@@ -10,7 +10,6 @@ public class StudentConfig {
     CommandLineRunner commandLineRunner(StudentRepository repository) {
         return args -> {
 
-
         };
 
     }
