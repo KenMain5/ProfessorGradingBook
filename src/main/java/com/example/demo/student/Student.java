@@ -4,7 +4,11 @@ package com.example.demo.student;
 import com.example.demo.course.Course;
 import com.example.demo.faculty.Faculty;
 import com.example.demo.studentAndCourseInfo.StudentAndCourseInfo;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import org.hibernate.annotations.NotFound;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -12,24 +16,31 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table
 public class Student {
 
     @Id
     @GeneratedValue
+
     private Long id;
+
+
     private String name;
+
+
     private Integer age;
+
+
     private LocalDate dob;
+
+
     private String email;
+
     @ManyToOne
     private Faculty faculty;
 
     @OneToMany(mappedBy = "student")
     private Set<StudentAndCourseInfo> coursesInfo = new HashSet<>();
 
-    //his ID, name, email, dob, age,
-    //mine id, name, age, dob ,email
 
     public Student() {
     }

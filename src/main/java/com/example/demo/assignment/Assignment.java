@@ -3,6 +3,7 @@ package com.example.demo.assignment;
 import com.example.demo.assignmentGrades.AssignmentGrades;
 import com.example.demo.course.Course;
 import com.example.demo.grade.Grade;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,8 +17,11 @@ public class Assignment {
     @GeneratedValue
     private Integer id;
 
+    @Column(name="assignment_name")
+    @Nonnull
     private String assignmentName;
 
+    @Column(name="assignment_dueDate")
     private LocalDateTime dueDate;
 
     @OneToMany(mappedBy = "assignment")

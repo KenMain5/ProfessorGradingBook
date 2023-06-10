@@ -1,13 +1,17 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "v1/students")
 public class StudentController {
+
 
     private final StudentServices studentServices;
 
@@ -17,6 +21,7 @@ public class StudentController {
     }
 
     @GetMapping()
+    @ResponseBody
     public List<Student> showStudents(){
         return studentServices.getStudents();
     }
@@ -32,5 +37,10 @@ public class StudentController {
         studentServices.terminateStudent(StudentId);
     }
 
-
+    @GetMapping("/Experimental")
+    public String experimental(Model model){
+        List<Student> studentList = studentServices.getStudents();
+        model.addAttribute("students", studentList);
+        return "student";
+    }
 }
